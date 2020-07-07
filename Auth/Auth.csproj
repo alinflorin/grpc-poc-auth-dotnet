@@ -8,10 +8,4 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.24.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Protobuf Include="..\..\grpc-poc-common\auth.proto" GrpcServices="Server">
-      <Link>Protos\auth.proto</Link>
-    </Protobuf>
-  </ItemGroup>
-
 </Project>
