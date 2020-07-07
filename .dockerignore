@@ -1,0 +1,17 @@
+**/.git/**
+**/.gitignore
+azure-pipelines.yml
+README.md
+kubernetes/**
+**/kubernetes.*.yml
+**/kubernetes.yml
+Dockerfile
+.dockerignore
+**/.gitattributes
+**/bin/**
+**/obj/**
+.vs/**
+.vscode/**
+.stignore
+okteto.yml
+okteto-no-watch.yml
