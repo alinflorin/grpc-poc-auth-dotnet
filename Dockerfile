@@ -10,7 +10,7 @@ RUN dotnet publish --no-build -c Release -o /out ./Auth/Auth.csproj
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 RUN sed -i 's/TLSv1.2/TLSv1.0/g' /etc/ssl/openssl.cnf
 WORKDIR /app
-COPY --from= builder /out .
+COPY --from=builder /out .
 ENV ASPNETCORE_URLS=https://0.0.0.0:5001
 ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 5001
