@@ -13,4 +13,4 @@ WORKDIR /app
 COPY --from= builder /out .
 ENV ASPNETCORE_URLS=https://0.0.0.0:5001
 EXPOSE 5001
-CMD["dotnet", "./Auth.dll"]
+CMD ["dotnet", "./Auth.dll"]
