@@ -1,4 +1,4 @@
-name: auth CI
+name: CI
 
 on:
   push:
@@ -16,7 +16,22 @@ jobs:
         username: ${{secrets.dockerUsername}}
         password: ${{secrets.dockerPassword}}
         repository: ${{github.repository}}
-        tags: 'latest'
+        tags: 'latest,${{github.sha}}'
         tag_with_ref: true
-        tag_with_sha: true
         push: true
+        
+    - name: Kubernetes set kube context
+      uses: Azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{secrets.kubeConfig}}
+    
+    - name: Deploy to kube cluster
+      uses: Azure/k8s-deploy@v1
+      with:
+        namespace: alinflorin
+        images: |
+          ${{github.repository}}:${{github.sha}}
+        manifests: |
+          kubernetes.yaml
+        force: true

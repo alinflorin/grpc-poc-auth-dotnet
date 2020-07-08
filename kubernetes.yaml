@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-poc-auth-dotnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-poc-auth-dotnet
+  template:
+    metadata:
+      labels:
+        app: grpc-poc-auth-dotnet
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: grpc-poc-auth-dotnet
+          image: alinflorin/grpc-poc-auth-dotnet:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-poc-auth-dotnet
+spec:
+  selector:
+    app: grpc-poc-auth-dotnet
+  ports:
+    - port: 5000
+      targetPort: 5000
+      name: http

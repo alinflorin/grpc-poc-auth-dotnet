@@ -1,0 +1,14 @@
+name: grpc-poc-auth-dotnet
+image: okteto/dotnetcore:3
+environment:
+  - ASPNETCORE_URLS=http://*:5000
+  - ASPNETCORE_ENVIRONMENT=Development
+command: [ "dotnet", "watch", "--project", "Auth/", "run"]
+workdir: /src
+remote: 500001
+persistentVolume:
+  enabled: true
+  size: 512Mi
+volumes:
+  - /root/.nuget/packages
+  - /root/.local/share/NuGet
