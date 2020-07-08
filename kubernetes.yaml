@@ -31,6 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grpc-poc-auth-dotnet
+  app: grpc-poc-auth-dotnet
 spec:
   selector:
     app: grpc-poc-auth-dotnet
