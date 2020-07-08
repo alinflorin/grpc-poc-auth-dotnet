@@ -1,8 +1,5 @@
 name: grpc-poc-auth-dotnet
 image: okteto/dotnetcore:3
-environment:
-  - ASPNETCORE_URLS=http://*:5000
-  - ASPNETCORE_ENVIRONMENT=Development
 command: [ "dotnet", "watch", "--project", "Auth/", "run"]
 workdir: /src
 remote: 50002
