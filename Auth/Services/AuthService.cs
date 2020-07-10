@@ -11,7 +11,7 @@ namespace Auth.Services
         public override async Task<LoginReply> Login(LoginRequest request, ServerCallContext context)
         {
             var reply = new LoginReply();
-            if (request.Username.ToLower() != "admin" && request.Password.ToLower() != "grpc-poc")
+            if (request.Username.ToLower() != "admin" || request.Password.ToLower() != "grpc-poc")
             {
                 reply.Succesful = false;
                 reply.Errors.Add("Invalid login credentials");
