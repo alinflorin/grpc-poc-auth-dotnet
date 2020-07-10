@@ -30,6 +30,7 @@ namespace Auth
 
             app.UseRouting();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<AuthService>();
