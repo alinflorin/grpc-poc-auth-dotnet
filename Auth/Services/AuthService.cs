@@ -26,5 +26,22 @@ namespace Auth.Services
             };
             return await Task.FromResult(reply);
         }
+
+        public override async Task SubscribeToNotifications(SubscribeToNotificationsRequest request, IServerStreamWriter<Notification> responseStream, ServerCallContext context)
+        {
+            await Task.Run(async () =>
+            {
+                while (true)
+                {
+                    var notif = new Notification
+                    {
+                        Title = new NLipsum.Core.Word().ToString(),
+                        Message = new NLipsum.Core.Paragraph().ToString()
+                    };
+                    await responseStream.WriteAsync(notif);
+                    await Task.Delay(5000);
+                }
+            });
+        }
     }
 }

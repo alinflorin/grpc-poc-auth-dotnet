@@ -3,6 +3,7 @@ package auth;
 
 service Auth {
 	rpc Login(LoginRequest) returns (LoginReply);
+    rpc SubscribeToNotifications(SubscribeToNotificationsRequest) returns (stream Notification);
 }
 
 message LoginRequest {
@@ -22,4 +23,13 @@ message User {
     bool isAdmin = 3;
     string email = 4;
     string avatarUrl = 5;
+}
+
+message Notification {
+    string title = 1;
+    string message = 2;
+}
+
+message SubscribeToNotificationsRequest {
+
 }
