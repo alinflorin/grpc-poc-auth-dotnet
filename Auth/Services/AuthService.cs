@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NLipsum.Core;
 
 namespace Auth.Services
 {
@@ -29,12 +30,13 @@ namespace Auth.Services
 
         public override async Task SubscribeToNotifications(SubscribeToNotificationsRequest request, IServerStreamWriter<Notification> responseStream, ServerCallContext context)
         {
+            var lg = new LipsumGenerator();
             for (var i = 0; i < 50; i++)
             {
                 await responseStream.WriteAsync(new Notification
                 {
-                    Title = new NLipsum.Core.Word().ToString(),
-                    Message = new NLipsum.Core.Paragraph().ToString()
+                    Title = lg.RandomWord(),
+                    Message = lg.RandomWord()
                 });
                 await Task.Delay(2000);
             }
