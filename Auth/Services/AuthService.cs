@@ -29,12 +29,6 @@ namespace Auth.Services
 
         public override async Task SubscribeToNotifications(SubscribeToNotificationsRequest request, IServerStreamWriter<Notification> responseStream, ServerCallContext context)
         {
-            await responseStream.WriteAsync(new Notification
-            {
-                Title = new NLipsum.Core.Word().ToString(),
-                Message = new NLipsum.Core.Paragraph().ToString()
-            });
-
             for (var i = 0; i < 50; i++)
             {
                 await responseStream.WriteAsync(new Notification
